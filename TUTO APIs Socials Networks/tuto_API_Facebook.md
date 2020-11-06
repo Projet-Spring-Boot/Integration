@@ -5,14 +5,14 @@ Cette partie explique les différentes étapes pour implémenter l'API Facebook 
 
 ### Introduction
 
-FAcebook est un service de micro-blogging et de réseautage social populaire, permettant aux gens de communiquer entre eux par des postes pouvant inclure des liens, images ou vidéos.
+Facebook est un service de micro-blogging et de réseautage social populaire, permettant aux gens de communiquer entre eux par des postes pouvant inclure des liens, images ou vidéos.
 Le projet "Spring Social Facebook" est une extension de Spring Social qui permet l'intégration avec Facebook.
 
-### Récuperer les Tockens Access (pour que notre API soie identifiée par Facebook)
+### Récupérer les Tockens Access (pour que notre API soit identifiée par Facebook)
 
 Pour récupérer les accès à l'API Facebook il faut formuler une demande ici : <A DETERMINER>
 
-Une fois la réponse emise par Facebook, renseigner les Tokens dans le fichier *social-cfg.properties*:
+Une fois la réponse émise par Facebook, renseigner les Tokens dans le fichier *social-cfg.properties*:
 
 ```xml
 # Facebook
@@ -23,7 +23,7 @@ facebook.app.secret=81a324fdbc4cade1ee25523c7bff58b3
 facebook.scope=public_profile,email
 ```
 
-### Comment Implementer 
+### Comment Implémenter 
 
 La dépendance Maven suivante ajoutera Spring Social Facebook au projet:
 
@@ -35,7 +35,7 @@ La dépendance Maven suivante ajoutera Spring Social Facebook au projet:
 </dependency>
 ```
 
-### Configurer la conectivitée de Facebook
+### Configurer la connectivité de Facebook
 
 
 ```java
@@ -58,9 +58,9 @@ public class ConnectionFactoryConfig {
 }
 ```
 
-Ici, la conection avec Facebook est enregistrée avec ConnectionFactoryRegistry via la méthode *.addConnectionFactory()*.
+Ici, la connection avec Facebook est enregistrée avec ConnectionFactoryRegistry via la méthode *.addConnectionFactory()*.
 Étant donné que les clés et les secrets des consommateurs peuvent être différents d'un environnement à l'autre (par exemple, test, production, etc.), il est recommandé d'externaliser ces valeurs.
-Par conséquent, ils sont câblés avec @Value en tant que valeurs d'espace réservé de propriété à résoudre par la prise en charge des espaces réservés de propriété de Spring.
+Par conséquent, ils sont câblés avec @Value en tant que valeur d'espace réservé de propriété à résoudre par la prise en charge des espaces réservés de propriété de Spring.
 
 Optionelement, il faudra configurer ConnectionFactoryRegistry et FacebookConnectionFactory dans le fichier pom.XML: 
 
