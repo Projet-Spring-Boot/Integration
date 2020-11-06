@@ -7,6 +7,21 @@ Cette partie explique les différentes étapes pour implémenter l'API Tweeter s
 Twitter est un service de micro-blogging et de réseautage social populaire, permettant aux gens de communiquer entre eux, par message de 140 caractères.
 Le projet "Spring Social Twitter" est une extension de Spring Social qui permet l'intégration avec Twitter.
 
+### Récuperer les Tockens Access (pour que notre API soie identifiée par Tweeter)
+
+Pour récupérer les accès à l'API Tweeter il faut formuler une demande ici : https://developer.twitter.com/en/apps
+
+Une fois la réponse emise par Tweeter, renseigner les Tokens dans le fichier *social-cfg.properties*:
+
+```xml
+# Twitter
+# http://localhost:8080/auth/twitter
+
+twitter.consumer.key=
+twitter.consumer.secret=
+twitter.scope=       
+```
+
 ### Comment Implementer 
 
 La dépendance Maven suivante ajoutera Spring Social Twitter au projet:
