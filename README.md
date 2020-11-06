@@ -9,6 +9,17 @@ Membres:
 
 ## TODO
 
+- Traduire la doc tweeter en français
+- Ajouter des docs pour d'autres réseaux sociaux
 - pouet
-- pouet
-- pouet
+
+## Outils nécessaire
+
+- Softwares:
+  + Java 1.8 minimum
+  + IDE Java (Eclipse, NetBeans, etc.)
+- Comptes:
+  + [Docker](https://www.docker.com/)
+  + [AWS](https://aws.amazon.com/)
+  
+  
