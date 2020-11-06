@@ -153,7 +153,7 @@ List<Tweet> tweets = twitter.timelineOperations().getMentions();
 
 ### Tweeter Private Messages
 
-####List of Tweeter Friends
+#### List of Tweeter Friends
 
 To get the friends list (in *friendsList*) :
 
@@ -180,4 +180,7 @@ twitter.directMessageOperations().sendDirectMessage("UltroumVomitae", "If I had 
 List of the 20 most recently received direct messages :
 
 ```java
-List<DirectMessage> twitter.directMessageOperations().getDirectMessagesReceived();```
+List<DirectMessage> twitter.directMessageOperations().getDirectMessagesReceived();
+```
+
+
