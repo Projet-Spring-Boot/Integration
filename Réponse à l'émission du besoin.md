@@ -30,11 +30,11 @@ Les groupes de travail sont répartis comme suit:
 
 Le *microservice 3* se chargera de la gestion des utilisateurs de l'application. Cette gestion se fera via des repositories/services, qui manipuleront des objets propres aux utilisateurs.
 
-Le *microservice 2* se chargera de l'interface. Elle devra posséder la même définition des objets utilisateurs que le *microservice 3*; afin de récupérer les données utilisateurs via des requêtes GET envoyées vers le *microservice 3*.
+Le *microservice 2* se chargera de l'interface. Elle devra posséder la même définition des objets utilisateurs que le *microservice 3*; afin de récupérer les données utilisateurs via des requêtes `GET` envoyées vers le *microservice 3*.
 
-Pour la connection, le *microservice 2* enverra une requête POST au *microservice 3*.
+Pour la connection, le *microservice 2* enverra une requête `POST` au *microservice 3*.
 
 L'interface devra permettre à l'utilisateur de se connecter avec son compte à l'application.
-Elle devra aussi proposer à un nouvel utilisateur de s'enregistrer sur l'application, soit via un réseau social, soit en créant un compte. Ainsi, l'interface doit connaître les deux POST différents à envoyer dans les 2 cas possibles (si l'utilisateur se connecte via un réseau social, un paramètre "signInProvider" est présent dans le body de la requête.)
+Elle devra aussi proposer à un nouvel utilisateur de s'enregistrer sur l'application, soit via un réseau social, soit en créant un compte. Ainsi, l'interface doit connaître les deux `POST` différents à envoyer dans les 2 cas possibles (si l'utilisateur se connecte via un réseau social, un paramètre "signInProvider" est présent dans le body de la requête.)
 
 Une documentation détaillée sur l'intégration de nouveaux réseaux sera bientôt disponible. (en spposant que nous utilisons une framework de service provider)
