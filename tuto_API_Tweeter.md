@@ -1,17 +1,15 @@
 
 ## Tweeter API
 
-This following part will explain the different steps to implement Tweeter API on your Spring Boot AP.
+Cette partie explique les différentes étapes pour implémenter l'API Tweeter sur votre appli SpringBoot.
 
 ### Introduction
-*Twitter is a popular micro-blogging and social networking service, enabling people to communicate with each other 140 characters at a time.*
+Twitter est un service de micro-blogging et de réseautage social populaire, permettant aux gens de communiquer entre eux, par message de 140 caractères.
+Le projet "Spring Social Twitter" est une extension de Spring Social qui permet l'intégration avec Twitter.
 
-The Spring Social Twitter project is an extension to Spring Social that enables integration with Twitter.
+### Comment Implementer 
 
-
-### How to get 
-
-The following Maven dependency will add Spring Social Twitter to your project: 
+La dépendance Maven suivante ajoutera Spring Social Twitter au projet:
 
 ```xml
 <dependency>
@@ -21,7 +19,7 @@ The following Maven dependency will add Spring Social Twitter to your project:
 </dependency>
 ```
 
-### Configure Twitter Connectivity
+### Configurer la conectivitée de Twitter
 
 
 ```java
@@ -43,10 +41,10 @@ public class SocialConfig {
 }
 ```
 
-Consumer keys and secrets may be different across environments (e.g., test, production, etc) it is recommended that these values be externalized.
-As shown here, Spring 3.1's Environment is used to look up the application's consumer key and secret.
+Consumer keys et secrets peuvent être différents selon les environnements (par exemple, test, production, etc.), il est recommandé d'externaliser ces valeurs.
+L'environnement de Spring 3.1 est utilisé pour rechercher la clé et le secret du consommateur de l'application.
 
-Optionally, you may also configure ConnectionFactoryRegistry and TwitterConnectionFactory in XML: 
+Optionelement, il faudra configurer ConnectionFactoryRegistry et TwitterConnectionFactory dans le fichier pom.XML: 
 
 ```xml
 <bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
@@ -61,21 +59,21 @@ Optionally, you may also configure ConnectionFactoryRegistry and TwitterConnecti
 </bean>
 ```
 
-### Tweeter API Binding
+### Liaison API - Tweeter
 
-If you are using Spring Social's service provider framework, you can get an instance of Twitter from a Connection.
-For example, the following snippet calls getApi() on a connection to retrieve a Twitter:
+Si vous utilisez le cadre de fournisseur de services de Spring Social, vous pouvez obtenir une instance de Twitter à partir d'une connexion.
+Par exemple, l'extrait de code suivant appelle la methode *.getApi()* sur une connexion pour récupérer un Twitter (*Token Access*):
 
 ```java
 Connection<Twitter> connection = connectionRepository.findPrimaryConnection(Twitter.class);
 Twitter twitter = connection != null ? connection.getApi() : new TwitterTemplate();
 ```
 
-Here, ConnectionRepository is being asked for the primary connection that the current user has with Twitter.
-If connection to Twitter is found, a call to getApi() retrieves a Twitter instance that is configured with the connection details received when the connection was first established.
-If there is no connection, a default instance of TwitterTemplate is created.
+Ici, ConnectionRepository indique la connexion principale de l'utilisateur actuel avec Twitter.
+Si une connexion à Twitter est trouvée, un appel à getApi () récupère une instance Twitter qui est configurée avec les détails de connexion reçus lors de l'établissement de la connexion.
+S'il n'y a pas de connexion, une instance par défaut de TwitterTemplate est créée.
 
-Once you have a Twitter, you can perform a several operations against Twitter. Twitter is defined as follows: 
+Une fois que vous avez un Twitter, vous pouvez effectuer plusieurs opérations sur Twitter :
 
 ```java
 public interface Twitter {
@@ -99,63 +97,59 @@ public interface Twitter {
 }
 ```
 
-### Tweeting
+### Tweeter
 
-To post a message to Twitter :
+Pour poster un Tweet sur la timeline de l'utilisateur (poster) :
 
 ```java
 twitter.timelineOperations().updateStatus("Spring Social is awesome!");
 ```
 
-### Reading Tweeter timelines
+### Lire des timelines Tweeter
 
-TimelineOperations also supports reading of tweets from one of the available Twitter timelines.
+TimelineOperations prend également en charge la lecture de tweets à partir des différentes timilines Twitter disponibles.
 
-To retrieve the 20 most recent tweets from the public timeline:
+Pour récupérer les 20 tweets les plus récents de la timeline publique:
 
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getPublicTimeline();
 ```
 
-To retrieves the 20 most recent tweets from the user's home timeline:
+Pour récupérer les 20 tweets les plus récents de la timeline de l'utilisateur:
 
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getHomeTimeline();
 ```
 	
 
-To retrieves the 20 most recent tweets from the user's friends timeline:
+Pour récupérer les 20 tweets les plus récents de la timeline d'un ami de l'utilisateur:
 
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getFriendsTimeline();
 ```
 
-
-To get tweets from the authenticating user's own timeline:
+Pour récupérer les tweets de l'utilisateur authentifié:
 
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getUserTimeline();
 ```
-		
 
-To retrieve the 20 most recent tweets from a specific user's timeline (not necessarily the authenticating user's timeline), pass the user's screen name in as a parameter to getUserTimeline():
-
+Pour récupérer les 20 tweets les plus récents de la chronologie d'un utilisateur spécifique (pas nécessairement suivant la chronologie de l'utilisateur authentifié), il faut transmettre le nom de l'utilisateur en tant que paramètre à getUserTimeline ():
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getUserTimeline("USER_SCREENS_NAME");
 ```
 
-
-To the four Twitter timelines, you may also want to get a list of tweets mentioning the user. The getMentions() method returns the 20 most recent tweets that mention the authenticating user:
-
+Pour les quatre chronologies Twitter, vous pouvez également obtenir une liste de tweets mentionnant l'utilisateur.
+La méthode *.getMentions()* renvoie les 20 tweets les plus récents qui mentionnent l'utilisateur authentifiant:
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getMentions();
 ```
 
-### Tweeter Private Messages
+### Messages Privés Tweeter
 
-#### List of Tweeter Friends
+#### Liste des amis Tweeter
 
-To get the friends list (in *friendsList*) :
+Pour avoir la liste de tout les amis de l'utilisateur connecté (dans *friendsList*) :
 
 ```java
 List<org.springframework.social.twitter.api.TwitterProfile> friendsList;
@@ -169,15 +163,15 @@ for(int i=0; i<friendIdList.size(); i++)
 friendsList = twitterTemplate.userOperations().getUsers(userIdArray);
 ```
 
-#### Send and receved Messages
+#### Envoiyer et recevoir des Messages
 
-To send direct message use the *.sendDirectMessage(FRIEND_NAME, MESSAGE)* method:
+Pour envoyer des messges privés utiliser la méthode *.sendDirectMessage(FRIEND_NAME, MESSAGE)*:
 
 ```java
 twitter.directMessageOperations().sendDirectMessage("UltroumVomitae", "If I had ten dollars...");
 ```
 
-List of the 20 most recently received direct messages :
+Pour avoir la liste des 20 derniers messages privés recus :
 
 ```java
 List<DirectMessage> twitter.directMessageOperations().getDirectMessagesReceived();
