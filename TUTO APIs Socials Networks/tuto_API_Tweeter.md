@@ -19,7 +19,7 @@ La dépendance Maven suivante ajoutera Spring Social Twitter au projet:
 </dependency>
 ```
 
-### Configurer la conectivitée de Twitter
+### Configurer la conectivité de Twitter
 
 
 ```java
@@ -44,7 +44,7 @@ public class SocialConfig {
 Consumer keys et secrets peuvent être différents selon les environnements (par exemple, test, production, etc.), il est recommandé d'externaliser ces valeurs.
 L'environnement de Spring 3.1 est utilisé pour rechercher la clé et le secret du consommateur de l'application.
 
-Optionelement, il faudra configurer ConnectionFactoryRegistry et TwitterConnectionFactory dans le fichier pom.XML: 
+Optionnellement, il faudra configurer ConnectionFactoryRegistry et TwitterConnectionFactory dans le fichier pom.XML: 
 
 ```xml
 <bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
@@ -107,7 +107,7 @@ twitter.timelineOperations().updateStatus("Spring Social is awesome!");
 
 ### Lire des timelines Tweeter
 
-TimelineOperations prend également en charge la lecture de tweets à partir des différentes timilines Twitter disponibles.
+TimelineOperations prend également en charge la lecture de tweets à partir des différentes timelines Twitter disponibles.
 
 Pour récupérer les 20 tweets les plus récents de la timeline publique:
 
@@ -140,7 +140,7 @@ List<Tweet> tweets = twitter.timelineOperations().getUserTimeline("USER_SCREENS_
 ```
 
 Pour les quatre chronologies Twitter, vous pouvez également obtenir une liste de tweets mentionnant l'utilisateur.
-La méthode *.getMentions()* renvoie les 20 tweets les plus récents qui mentionnent l'utilisateur authentifiant:
+La méthode *.getMentions()* renvoie les 20 tweets les plus récents qui mentionnent l'utilisateur authentifié:
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getMentions();
 ```
@@ -149,7 +149,7 @@ List<Tweet> tweets = twitter.timelineOperations().getMentions();
 
 #### Liste des amis Tweeter
 
-Pour avoir la liste de tout les amis de l'utilisateur connecté (dans *friendsList*) :
+Pour avoir la liste de tous les amis de l'utilisateur connecté (dans *friendsList*) :
 
 ```java
 List<org.springframework.social.twitter.api.TwitterProfile> friendsList;
@@ -163,9 +163,9 @@ for(int i=0; i<friendIdList.size(); i++)
 friendsList = twitterTemplate.userOperations().getUsers(userIdArray);
 ```
 
-#### Envoiyer et recevoir des Messages
+#### Envoyer et recevoir des Messages
 
-Pour envoyer des messges privés utiliser la méthode *.sendDirectMessage(FRIEND_NAME, MESSAGE)*:
+Pour envoyer des messages privés utiliser la méthode *.sendDirectMessage(FRIEND_NAME, MESSAGE)*:
 
 ```java
 twitter.directMessageOperations().sendDirectMessage("UltroumVomitae", "If I had ten dollars...");
