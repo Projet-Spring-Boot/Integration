@@ -9,9 +9,10 @@ Ce que propose l'application :
 
 - Un nouvel utilisateur arrive sur notre application. Deux choix s'offrent à lui :
 
-    1. Il créé un compte sur l'application de façon basique (nouvel enregistrement BDD).
-    2. Il se connecte via un réseau social en Oauth et a la possibilité de créer un compte sur notre application via les données récupérées de son compte du réseau social.
-</a>
+    + Il créé un compte sur l'application de façon basique (nouvel enregistrement BDD).  
+    **OU**  
+    + Il se connecte via un réseau social en **Oauth** et a la possibilité de créer un compte sur notre application via les données récupérées de son compte du réseau social.  
+
 
 - Lorsque l'utilisateur est connecté via un enregistrement **Oauth** (dans le cas de Twitter/Youtube/Facebook), on a la possibilité pour lui d'envoyer des requètes `POST`.
 
