@@ -1,7 +1,7 @@
 # PARTIE 1 :
 
 - Utilisation de connections **Oauth** pour se connecter via des réseaux sociaux (ce qui implique que notre application doit être enregistrée dans ces réseaux afin de récupérer les secrets).
-- Utilisation de l'[API](https://fr.wikipedia.org/wiki/Interface_de_programmation) publiques des réseaux sociaux pour envoyer des  requètes `POST` (messages, flux vidéos ...). Par exemple utilisation de **twitter4j** pour poster des tweets.
+- Utilisation de l'[API](https://fr.wikipedia.org/wiki/Interface_de_programmation) publique des réseaux sociaux pour envoyer des  requètes `POST` (messages, flux vidéos ...). Par exemple utilisation de **twitter4j** pour poster des tweets.
 - Création d'une page permettant à l'utilisateur de voir/modifier les informations de son compte sur notre application.
 - Une première version a été développée par notre groupe, mais en utilisant [MySQL](https://www.mysql.com/). Il nous faut alors prendre en main [Redis](https://redis.io/) pour changer la base de donnée utilisée.
 
@@ -14,7 +14,7 @@ Ce que propose l'application :
     + Il se connecte via un réseau social en **Oauth** et a la possibilité de créer un compte sur notre application via les données récupérées de son compte du réseau social.  
 
 
-- Lorsque l'utilisateur est connecté via un enregistrement **Oauth** (dans le cas de Twitter/Youtube/Facebook), on a la possibilité pour lui d'envoyer des requêtes `POST`.
+- Lorsque l'utilisateur est connecté via un enregistrement **Oauth** (dans le cas de Twitter/Youtube/Facebook), il a la possibilité d'envoyer des messages sur réseaux sociaux via des requêtes `POST`.
 
 
 
