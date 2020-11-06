@@ -1,5 +1,4 @@
-# Integration
-Architecture et intégration des autres sujets + ajouts autres réseaux sociaux.
+# Architecture, intégration et ajouts d'autres réseaux sociaux
 
 Membres:
 
@@ -7,3 +6,4 @@ Membres:
 - Florian Sigalas
 - Julien Dol
 - Nicolas Petit
+
