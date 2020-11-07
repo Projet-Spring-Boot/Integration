@@ -19,8 +19,16 @@ Une fois la réponse emise par Tweeter, renseigner les Tokens dans le fichier *s
 
 twitter.consumer.key=
 twitter.consumer.secret=
-twitter.scope=       
+# twitter.scope=       
 ```
+
+Ensuite dans *"Persmission Settings"* selectionner *Read and Write*.
+
+Activer *Enable 3-legged OAuth*.
+
+Le Call Back URLs est : *http://localhost:8080/auth/twitter*
+
+Le Web Site sera celui de l'isen : *https://isen.fr/*
 
 ### Comment Implementer 
 
@@ -81,7 +89,7 @@ Par exemple, l'extrait de code suivant appelle la methode *.getApi()* sur une co
 
 ```java
 Connection<Twitter> connection = connectionRepository.findPrimaryConnection(Twitter.class);
-Twitter twitter = connection != null ? connection.getApi() : new TwitterTemplate();
+Twitter twitter = connection != null ? connection.getApi() : new TwitterTemplate(CONSUMER_KEY, CONSUMER_SECRET);
 ```
 
 Ici, ConnectionRepository indique la connexion principale de l'utilisateur actuel avec Twitter.
