@@ -2,8 +2,8 @@ Afin de simplifier le travail d'intégration entre micro-services, merci de suiv
 
 # 1. Framework de requêtes HTTP
 
-Pour envoyer des requêtes au service d'administration, je conseil d'utiliser **WebClient** car c'est un framework très moderne.
-WebClient est un **client HTTP** moderne et alternatif au RestTemplate développé par Spring. Non seulement il fournit une API synchrone traditionnelle, mais il prend également en charge une approche asynchrone et non bloquante efficace.
+Pour envoyer des requêtes au service d'administration, je conseil d'utiliser **WebClient** car c'est un framework très moderne.  
+WebClient est un **client HTTP** moderne et alternatif au RestTemplate développé par Spring. Non seulement il fournit une API synchrone traditionnelle, mais il prend également en charge une approche asynchrone et non bloquante efficace.  
 
 Voir: [WebClient](https://www.baeldung.com/spring-5-webclient)
 
@@ -19,11 +19,12 @@ Cependant, vous pouvez aussi utiliser :
 
 ## 2.1. Pour les endpoints
 
-Afin de requêter un autre service, vous aurez besoin de connaître le *HOST*, le *PORT* de se service une fois déployé, et la ressource vers laquelle taper :
-Exemple : Requête GET vers http://168.212.226.204:8080/users.
-Ici, il est important de savoir que l'endpoint */users* va retourner par exemple la liste des utilisateurs. Il s'agit du chemin vers la ressource.
+Afin de requêter un autre service, vous aurez besoin de connaître le *HOST*, le *PORT* de se service une fois déployé, et la ressource vers laquelle taper.  
 
-**Ainsi, pour faciliter la configuration, nous demandons aux groupes (surtout ADMINISTRATION) de ne pas hard coder leur chemin vers les ressources, mais de les écrire dans un fichier `.properties`.**
+Exemple : Requête *GET* vers `http://168.212.226.204:8080/users`.  
+Ici, il est important de savoir que l'endpoint */users* va retourner par exemple la liste des utilisateurs. Il s'agit du chemin vers la ressource.  
+
+**Ainsi, pour faciliter la configuration, nous demandons aux groupes (surtout ADMINISTRATION) de ne pas hard coder leur chemin vers les ressources, mais de les écrire dans un fichier `.properties`.**  
 
 Exemple : 
 
