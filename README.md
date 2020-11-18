@@ -1,11 +1,8 @@
 # Architecture, intégration et ajouts d'autres réseaux sociaux
 
-Membres:
+## Documentation disponible
 
-- Louison Sarlin Magnus
-- Florian Sigalas
-- Julien Dol
-- Nicolas Petit
+- [MANDATORY](/docs/MANDATORY_EQUIPES_A_LIRE.md)
 
 ## TODO
 
@@ -23,3 +20,10 @@ Membres:
   + [AWS](https://aws.amazon.com/)
   
   
+
+Membres:
+
+- Louison Sarlin Magnus
+- Florian Sigalas
+- Julien Dol
+- Nicolas Petit
