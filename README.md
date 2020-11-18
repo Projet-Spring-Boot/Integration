@@ -1,10 +1,10 @@
 # Architecture, intégration et ajouts d'autres réseaux sociaux
 
-**Il est demandé à tous les groupe de prendre connaissance du document détaillant les [contraintes](/docs/MANDATORY_EQUIPES_A_LIRE.md)** !
+**Il est demandé à tous les groupe de prendre connaissance du document détaillant les [contraintes](/docs/mandatory.md)** !
 
 ## Documentation disponible
 
-- **[Contraintes](/docs/MANDATORY_EQUIPES_A_LIRE.md)**
+- **[Contraintes](/docs/mandatory.md)**
 - [Réponse à l'emission du besoin](/docs/reponse_besoin.md)
 
 ## TODO
