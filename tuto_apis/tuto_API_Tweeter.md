@@ -143,7 +143,6 @@ Pour récupérer les 20 tweets les plus récents de la timeline de l'utilisateur
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getHomeTimeline();
 ```
-	
 
 Pour récupérer les 20 tweets les plus récents de la timeline d'un ami de l'utilisateur:
 
@@ -164,8 +163,30 @@ List<Tweet> tweets = twitter.timelineOperations().getUserTimeline("USER_SCREENS_
 
 Pour les quatre chronologies Twitter, vous pouvez également obtenir une liste de tweets mentionnant l'utilisateur.
 La méthode *.getMentions()* renvoie les 20 tweets les plus récents qui mentionnent l'utilisateur authentifié:
+
 ```java
 List<Tweet> tweets = twitter.timelineOperations().getMentions();
+```
+
+*Retour : liste de Tweets*
+
+Pour exploiter chaque Tweet de la liste :
+
+```java
+Tweet.getFromUser();         // Retourne le nom de l'utilisateur qui a tweeté le tweet
+Tweet.getFromUserId();       // Retourne l'ID de l'utilisateur qui à tweeté le tweet
+Tweet.getText();             // Retourne le texte du tweet
+Tweet.getProfileImageUrl();  // Retourne l'url de la photo de profil de l'utilisateur qui a tweeté
+
+Tweet.getRetweetCount();    // Retourne le nombre de fois que le tweet à été retweeté
+Tweet.getFavoriteCount();   // Retourne le nombre de favoris d'un tweet
+
+Tweet.getEntities().getMedia().forEach(media -> {
+    media.getMediaUrl();                             // Retourne la chaine de caractère corespondant à l'url des médias contenus dans le tweet
+});
+
+Tweet.isRetweet();           // Retourne booléan si le tweet est un retweet : True:Retweeted / False:NotRetweeted
+retweeted = Tweet.getRetweetedStatus(); // retourne un objet Tweet (retweeted) correspondant au tweet cité en retweet
 ```
 
 ### Messages Privés Tweeter
