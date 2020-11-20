@@ -11,6 +11,7 @@
 
 ### Tutos APIs
 
+<<<<<<< HEAD
 - [Facebook](/tutos/tuto_API_Facebook.md)
 - [Twitter](tutos/tuto_API_Tweeter.md)
 
@@ -24,6 +25,20 @@
 
 - [x] Traduire la doc tweeter en français
 - [ ] Ajouter des docs pour d'autres réseaux sociaux
+=======
+- [Facebook](/tuto_apis/tuto_API_Facebook.md)
+- [Twitter](tuto_apis/tuto_API_Tweeter.md)
+
+### Autres tutos
+
+- [BDD Redis](tuto_apis/tuto_BDDRedis.md)
+
+## TODO
+
+- Traduire la doc tweeter en français
+- Ajouter des docs pour d'autres réseaux sociaux
+- pouet
+>>>>>>> apis_tuto
 
 ## Outils nécessaire
 
@@ -36,9 +51,18 @@
   
   
 
+<<<<<<< HEAD
 ## Membres:
 
 - Julien Dol
 - Nicolas Petit
 - Louison Sarlin Magnus
 - Florian Sigalas
+=======
+Membres:
+
+- Louison Sarlin Magnus
+- Florian Sigalas
+- Julien Dol
+- Nicolas Petit
+>>>>>>> apis_tuto
