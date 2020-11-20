@@ -20,11 +20,6 @@
 - [BDD Redis](tutos/tuto_BDDRedis.md)
 - [Rédaction Markdown](https://guides.github.com/features/mastering-markdown/)
 
-## TODO
-
-- [x] Traduire la doc tweeter en français
-- [ ] Ajouter des docs pour d'autres réseaux sociaux
-
 ### Autres tutos
 
 - [BDD Redis](tuto_apis/tuto_BDDRedis.md)
@@ -33,9 +28,8 @@
 
 ## TODO
 
-- Traduire la doc tweeter en français
-- Ajouter des docs pour d'autres réseaux sociaux
-- pouet
+- [x] Traduire la doc tweeter en français
+- [ ] Ajouter des docs pour d'autres réseaux sociaux
 
 ## Outils nécessaire
 
@@ -45,8 +39,6 @@
 - Comptes:
   + [Docker](https://www.docker.com/)
   + [AWS](https://aws.amazon.com/)
-  
-  
 
 ## Membres:
 
