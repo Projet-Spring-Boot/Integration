@@ -6,6 +6,8 @@
 Premièrement il faut ajouter les dépendances dans le ficheir XML:
 
 ```xml
+<!-- REDIS -->
+
 <dependency>
     <groupId>org.springframework.data</groupId>
 	<artifactId>spring-data-redis</artifactId>
@@ -18,6 +20,8 @@ Premièrement il faut ajouter les dépendances dans le ficheir XML:
     <version>3.3.0</version>
     <type>jar</type>
 </dependency>
+
+<!-- REDIS -->
 ```
 
 >*Facon alternattive :*
@@ -80,8 +84,13 @@ public class Student implements Serializable {
     private Gender gender;
     private int grade;
     // ...
+    
+    // Getteurs - Setteurs...
 }
 ```
+
+>*TIPS! Les setteurs et les getteurs sont les mêmes que pour MySql
+>(la base de donnée que nous avont étudié pendant 2 et demis en cours)*
 
 Création du Repository
 
@@ -90,4 +99,52 @@ Création du Repository
 public interface StudentRepository extends CrudRepository<Student, String> {}
 ```
 
->*suite du tuto : https://www.baeldung.com/spring-data-redis-tutorial*
+### Accès à la base
+
+Création d'un nouvel objet Student :
+
+```java
+Student student = new Student(
+	  "Eng2015001", "John Doe", Student.Gender.MALE, 1);
+	studentRepository.save(student);
+}
+```
+
+Récuperer un objet par ID : 
+
+```java
+Student retrievedStudent = studentRepository.findById("Eng2015001").get();
+```
+
+Modifier les données d'un objet :
+
+```java
+retrievedStudent.setName("Richard Watson");
+studentRepository.save(student);
+```
+
+Supprimer un objet :
+
+```java
+studentRepository.deleteById(student.getId());
+```
+
+Récupérer tout les objets d'une "table" :
+
+```java
+// --- Création des Edutiants à placer dans notre table --- //
+Student engStudent = new Student(
+"Eng2015001", "John Doe", Student.Gender.MALE, 1);
+Student medStudent = new Student(
+  "Med2015001", "Gareth Houston", Student.Gender.MALE, 2);
+studentRepository.save(engStudent);
+studentRepository.save(medStudent);
+
+// -- Récupération de touts les éléments de la table -- //
+List<Student> students = new ArrayList<>();
+studentRepository.findAll().forEach(students::add);
+```
+
+>Bravo ! Tout compte faits Redis c'est pas si mal
+>
+>**Grâce à ce tuto Redis ne fais pas un plis !**
