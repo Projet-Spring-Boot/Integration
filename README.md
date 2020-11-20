@@ -16,15 +16,9 @@
 
 ### Autres tutos
 
-- [Sparation des services IHM et Admin](tutos/tuto_separation_ihm_admin.md)
+- [Séparation des services IHM et Admin](tutos/tuto_separation_ihm_admin.md)
 - [BDD Redis](tutos/tuto_BDDRedis.md)
 - [Rédaction Markdown](https://guides.github.com/features/mastering-markdown/)
-
-### Autres tutos
-
-- [BDD Redis](tuto_apis/tuto_BDDRedis.md)
-- [Facebook](/tuto_apis/tuto_API_Facebook.md)
-- [Twitter](tuto_apis/tuto_API_Tweeter.md)
 
 ## TODO
 
