@@ -33,8 +33,11 @@
 ## Outils nécessaire
 
 - Softwares:
-  + Java 1.8 minimum
-  + IDE Java (Eclipse, NetBeans, etc.)
+  + Java 1.8 (minimum)
+  + IDE Java (Eclipse, NetBeans, IntelliJ, etc.)
+  + Git Bash (bash pour Windows)
+- Compilation:
+  + Maven
 - Comptes:
   + [Docker](https://www.docker.com/)
   + [AWS](https://aws.amazon.com/)
