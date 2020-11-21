@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+		<div th:fragment="navbar">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#" th:href="@{/}"> <img
+							alt="home" src="images/home.png" width="25" height="25"
+							th:src="@{../../images/home.png}" />
+						</a>
+						<ul class="nav navbar-nav">
+							<li><a href="#" th:href="@{/admin}">Admin</a></li>
+							<li><a th:if="${#request.userPrincipal != null}" href="#"
+								th:href="@{/logout}">Logout</a></li>
+							<li><a th:if="${#request.userPrincipal != null}" href="#"
+								th:href="@{/userInfo}">My account</a></li>
+							<li><a th:if="${#request.userPrincipal != null}" href="#"
+								th:href="@{/sendMessage}">Send message</a></li>
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+</body>
+</html>

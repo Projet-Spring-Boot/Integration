@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	<link href="../../static/css/login.css" th:href="@{../css/login.css}" rel="stylesheet" media="screen" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css" th:href="@{/webjars/font-awesome/5.15.1/css/all.css}" rel="stylesheet" type="text/css" />
+	
+
+
+
+<title>Sign In</title>
+
+<style>
+.error-message {
+	font-size: 90%;
+	font-style: italic;
+	color: red;
+}
+</style>
+
+</head>
+<body>
+	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
+		
+
+			
+			<!-- TEST -->
+			<div class="login-area particles-absolute">
+        <div class="bg-image">
+            <div class="login-signup">
+                <div class="container">
+                    <div class="login-header">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="login-logo">
+                                    <img alt="login_logo" src="images/login.png" width="25" height="25" th:src="@{../../images/login.png}" class="img-responsive" />
+                                </div>
+                            </div>
+                           
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="register" class="tab-pane active">
+                           <div class="login-inner">
+                                
+                                <div class="title">
+                                	<h1>Send<span> message</span></h1>
+                                </div>
+                                
+                                 <div class="login-form">
+                                	<form th:object="${messageForm}" th:action="@{/sendMessage}" method="POST">
+                                        	<div class="form-details">
+                                        
+                                        		<textarea name="w3review" rows="4" cols="50" th:field="*{message}"></textarea>
+                                        	</div>
+                                        	<input class="form-btn" name="submit" type="submit" value="submit" />
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FIN TEST -->
+    
+  
+			
+			
+	</div>
+
+</body>
+</html>

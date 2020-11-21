@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Access Denied</title>
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	<link href="../../static/css/403Page.css" th:href="@{../css/403Page.css}" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+	<!-- Include _menu.html -->
+	
+	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
+		<div class="particles-absolute">
+			<div class="block">
+	    		<figure><img alt="sorry" src="images/sorry.png" th:src="@{../../images/sorry.png}" /></figure>
+	    		<h1  th:if="${name != null}" class="title" th:utext="'Sorry '+ ${name}" style="color: red;"></h1>
+	    		<p  class="excerpt" style="color: red;">You do not have permission to access this page!</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

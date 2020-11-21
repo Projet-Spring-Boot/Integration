@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	<link href="../../static/css/login.css" th:href="@{../css/login.css}" rel="stylesheet" media="screen" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css" th:href="@{/webjars/font-awesome/5.15.1/css/all.css}" rel="stylesheet" type="text/css" />
+	
+
+
+
+<title>Login</title>
+
+</head>
+<body>
+	<div id="particles-js">
+		<!--/*/ <th:block th:include="fragments/navbar :: navbar"></th:block> /*/-->
+	
+		
+	
+			
+		<div class="login-area particles-absolute">
+        	<div class="bg-image">
+            	<div class="login-signup">
+                	<div class="container">
+                    	<div class="login-header">
+                        	<div class="row">
+                            	<div class="col-md-6 col-sm-6 col-xs-12">
+                                	<div class="login-logo">
+                                    	<img alt="login_logo" src="images/login.png" width="25" height="25" th:src="@{../../images/login.png}" class="img-responsive" />
+                                	</div>
+                            	</div>
+                            	<div class="col-md-6 col-sm-6 col-xs-12">
+                                	<div class="login-details">
+                                    	<ul class="nav nav-tabs navbar-right">
+                                        	<li ><a href="#" th:href="@{/signup}">Register</a></li>
+                                        	<li class="active"><a data-toggle="tab" href="#login">Login</a></li>
+                                    	</ul>
+                                	</div>
+                           	 	</div>
+                        	</div>
+						</div>
+
+                    	<div class="tab-content">
+                        	<div id="login" class="tab-pane fade in active">
+                            	<div class="login-inner">
+                                	<div class="title">
+                                    	<h1>Login With <span>Social Media</span></h1>
+                                	</div>
+                                	<div class="social-container">
+										<a th:href="@{/auth/google}" class="social"><i class="fab fa-google fa-2x"></i></a>
+										<a th:href="@{/auth/twitter}" class="social"><i class="fab fa-twitter fa-2x"></i></a>
+									</div>
+									<div class="title">
+                                   		<h1>Or use your <span>account</span></h1>
+                                	</div>
+                                	<div class="login-form">
+                                    	<form name='f' th:action="@{/j_spring_security_check}" method="POST">
+                                        	<div class="form-details">
+                                        
+                                        		<div th:if="${#request.getParameter('error') == 'true'}" style="margin-top: 10px; margin-bot : 10px">
+													<div class="alert alert-danger" role="alert">
+						  								<h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i></h4>
+						  								<hr>
+						  									<p class="mb-0"><span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}" th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}"> Static summary </span></p>
+													</div>
+												</div>
+												<div class="form-group">
+													<span ><i class="fa fa-user"></i></span>
+													<input type="text" name="username" placeholder="Username" value=''>
+												</div>
+												
+												<div class="form-group">
+													<span><i class="fa fa-lock"></i></span>
+													<input type="password" name="password" placeholder="Password">
+												</div>
+                                        	</div>
+                                        	<input class="form-btn" name="submit" type="submit" value="submit" />
+                                    	</form>
+                                    	
+                                    	
+                                	</div>
+
+											
+
+                            	</div>
+                        	</div>
+                    	</div>
+                	</div>
+            	</div>
+        	</div>
+
+    	
+    	
+    	</div>
+</div>
+	
+
+</body>
+</html>
