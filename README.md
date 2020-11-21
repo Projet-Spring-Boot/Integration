@@ -23,10 +23,10 @@
 ## TODO
 
 - [x] Traduire la doc tweeter en français
-- [ ] Ajouter *POST* dans la doc tweeter
+- [x] Poster un tweeter
+- [ ] Mettre a jour la doc tweeter
 - [ ] Chercher d'autres réseaux a intégrer
 - [ ] Mettre a jour la doc Redis en fonction de la Team admin (installation, etc)
-- [ ] Poster un tweeter
 - [ ] Définir comment le micro-services communiquent entre eux
 
 
