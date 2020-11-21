@@ -13,6 +13,7 @@
 
 - [Facebook](/tutos/tuto_API_Facebook.md)
 - [Twitter](tutos/tuto_API_Tweeter.md)
+- [Twitter Fonctionnel](tutos/tuto_API_Tweetter_Fonctionelle.md)
 
 ### Autres tutos
 
@@ -24,10 +25,11 @@
 
 - [x] Traduire la doc tweeter en français
 - [x] Poster un tweeter
-- [ ] Mettre a jour la doc tweeter
+- [x] Mettre a jour la doc tweeter
 - [ ] Chercher d'autres réseaux a intégrer
 - [ ] Mettre a jour la doc Redis en fonction de la Team admin (installation, etc)
 - [ ] Définir comment le micro-services communiquent entre eux
+- [ ] Ajouter Facebook à l'application
 
 
 ## Outils nécessaire
