@@ -42,6 +42,62 @@ La dépendance Maven suivante ajoutera Tweeter4j au projet:
 </dependency>
 ```
 
+Pour récupérer ces valeures dans notre code, on utilise une classe de configuration
+(celles-ci sont appelées par défaut par Spring au début) : 
+
+```java
+@Configuration
+@PropertySources({ @PropertySource("classpath:social-cfg.properties") })
+@ConfigurationProperties(prefix = "social")
+public class SocialProperties {
+
+    private String twitterConsumerKey;
+    private String twitterConsumerSecret;
+
+    ...
+
+    public String getTwitterConsumerKey() {
+        return twitterConsumerKey;
+    }
+    public void setTwitterConsumerKey(String twitterConsumerKey) {
+        this.twitterConsumerKey = twitterConsumerKey;
+    }
+    public String getTwitterConsumerSecret() {
+        return twitterConsumerSecret;
+    }
+    public void setTwitterConsumerSecret(String twitterConsumerSecret) {
+        this.twitterConsumerSecret = twitterConsumerSecret;
+    }
+
+
+
+}
+```
+
+Pour utiliser cette valeur dans le code, on injecte un object de type SocialProperties :
+
+```java
+@Service
+public class YourServiceImpl implements YourService {
+
+    private SocialProperties socialProperties;
+
+    ...
+
+    @Autowired
+    public void setSocialProperties(SocialProperties socialProperties) {
+        this.socialProperties = socialProperties;
+    }
+
+    // Use property 'social.twitter-consumer-key'
+    @Override
+    public void foo() {
+
+        String bar = socialProperties.getTwitterConsumerKey();
+    }
+}
+```
+
 ### Configurer la conectivité de Twitter
 
 
@@ -87,7 +143,7 @@ Pour poster un Tweet sur la timeline de l'utilisateur (poster) :
 twitter.updateStatus("MESSAGE");
 ```
 
-### Lire des timelines TweeterS
+### Lire des timelines Tweeter
 
 Pour récupérer les 20 tweets les plus récents de la timeline de l'utilisateur:
 
@@ -107,12 +163,12 @@ timeline.forEach(s -> {     //On parcours la liste des 20 Tweets
     System.out.println("media :");
     for(int i=0 ; i<medias.length ; i++) {
         medias[i].getText();        // Récupère le lien du tweet
-        medias[i].getMediaURL();    // Récupère la l'url vers un média
+        medias[i].getMediaURL();    // Récupère l'url vers un média
     }
 
     if(s.isRetweet()) {     //Si ce tweet est un retweet
         Status status = s.getRetweetedStatus();
-        status.getText();               // Récupère le texte du tweete retweeté
+        status.getText();               // Récupère le texte du tweet retweeté
         status.getUser().getName();     //Récupère le nom de l'utilisateur qui a tweeté le tweet retweeté (vous suivez?)
         MediaEntity[] medias2 = status.getMediaEntities();
         for(int i=0 ; i<medias2.length ; i++) {
@@ -124,34 +180,27 @@ timeline.forEach(s -> {     //On parcours la liste des 20 Tweets
 
 ### Messages Privés Tweeter
 
-#### Liste des amis Tweeter
-
-Pour avoir la liste de tous les amis de l'utilisateur connecté (dans *friendsList*) :
-
-```java
-List<org.springframework.social.twitter.api.TwitterProfile> friendsList;
-CursoredList<Long> friendIdList;
-long[] userIdArray;
-
-friendIdList =  twitterTemplate.friendOperations().getFriendIds();
-userIdArray = new long[friendIdList.size()];
-for(int i=0; i<friendIdList.size(); i++)
-    userIdArray[i] = friendIdList.get(i);
-friendsList = twitterTemplate.userOperations().getUsers(userIdArray);
-```
-
 #### Envoyer et recevoir des Messages
 
-Pour envoyer des messages privés utiliser la méthode *.sendDirectMessage(FRIEND_NAME, MESSAGE)*:
+Pour envoyer des messages privés :
 
 ```java
-twitter.directMessageOperations().sendDirectMessage("UltroumVomitae", "If I had ten dollars...");
+twitter.sendDirectMessage("@NAME", "MESSAGE");
 ```
 
-Pour avoir la liste des 20 derniers messages privés recus :
+*Mon @ est @_doolmen, envoi moi de douces paroles !*
+
+Pour avoir la liste des "count" derniers messages privés recus (count:20 par défaut et 50 max):
 
 ```java
-List<DirectMessage> twitter.directMessageOperations().getDirectMessagesReceived();
+// --- PAS ENCORE FONCTIONEL --- //
+
+Response<List> DirectsMessages = twitter.getDirectMessages(count);
+
+DirectsMessages.forEach(message ->{
+    message.senderScreeName();  // Récupère le nom de l'envoyeur
+    message.getText();          // Récupère le texte du message
+});
 ```
 
-
+**Bravo vous pouvez désormais utiliser Tweeter depuis votre API GLHF !**
