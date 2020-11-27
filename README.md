@@ -44,7 +44,7 @@
 - Comptes:
   + [Docker](https://www.docker.com/)
   + [AWS](https://aws.amazon.com/)
-  + [SONAR-CLOUD] (https://sonarcloud.io/)
+  + [SONAR-CLOUD](https://sonarcloud.io/)
 
 ## Membres:
 
