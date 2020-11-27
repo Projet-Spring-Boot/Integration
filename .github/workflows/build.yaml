@@ -22,5 +22,4 @@ jobs:
         run: mvn -B clean package --file pom.xml
 
       - name: Recherche du .jar
-        run: cd target/
-        run: ls
+        run: ls target/
