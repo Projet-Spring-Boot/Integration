@@ -96,10 +96,9 @@ Il faut aussi modifier notre github action en ajoutant le code suivant a la fin.
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
+    - name: Checkout master branch # On se place sur la branch master
+      uses: actions/checkout@v2
+    
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
@@ -110,6 +109,15 @@ Il faut aussi modifier notre github action en ajoutant le code suivant a la fin.
 :warning: **il faudra créer les tokens `GITHUB_TOKEN` et `SONAR_TOKEN`** :warning:
 
 Cet outil n'est pas bloquant même en cas de détection de vulnérabilité le depoyement se poursuivra. Il est donc **impératif** d'aller regarder sur la page sonarcloud les vulnérabilité détectées et de les corriger dans la version suivante.
+
+A présent nous devons modifier le `pom.xml` en ajoutant
+```xml
+<properties>
+  <sonar.projectKey>Projet-Spring-Boot_Integration</sonar.projectKey>
+  <sonar.organization>projet-spring-boot-integration</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+```
 
 
 ## CD: Déploient Continue
