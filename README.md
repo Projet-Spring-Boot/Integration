@@ -2,10 +2,15 @@
 
 **Il est demandé à tous les groupe de prendre connaissance du document détaillant les [contraintes](/docs/mandatory.md)** !
 
-## Documentation disponible
+## Documentation et ressources disponible
 
 - **[Contraintes](/docs/mandatory.md)**
 - [Réponse à l'emission du besoin](/docs/reponse_besoin.md)
+- [Mise en place de la CI-CD](/docs/CI_CD.md)
+
+- [Dockerfile](/res/Dockerfile)
+- [build.yaml](/res/build.yaml)
+- [sonar-project.properties](/res/sonar-project.properties)
 
 ## Tutos Disponibles
 
@@ -29,9 +34,12 @@
 - [ ] Mettre a jour la doc Redis en fonction de la Team admin (installation, etc)
 - [ ] Définir comment le micro-services communiquent entre eux
 - [x] Ajouter Facebook à l'application
-- [ ] Faire Documentation Facebook
+- [x] Faire Documentation Facebook
 - [ ] Créer une classe générique de "post"
-- [ ] Implémenter CICD 
+- [x] SonarCloud
+- [ ] Création et push des Docker Image
+- [ ] AWS
+- [ ] Doc CI-CD
 
 ## Outils nécessaire
 
