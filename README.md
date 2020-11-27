@@ -26,11 +26,12 @@
 - [x] Traduire la doc tweeter en français
 - [x] Poster un tweeter
 - [x] Mettre a jour la doc tweeter
-- [ ] Chercher d'autres réseaux a intégrer
 - [ ] Mettre a jour la doc Redis en fonction de la Team admin (installation, etc)
 - [ ] Définir comment le micro-services communiquent entre eux
-- [ ] Ajouter Facebook à l'application
-
+- [x] Ajouter Facebook à l'application
+- [ ] Faire Documentation Facebook
+- [ ] Créer une classe générique de "post"
+- [ ] Implémenter CICD 
 
 ## Outils nécessaire
 
@@ -43,6 +44,7 @@
 - Comptes:
   + [Docker](https://www.docker.com/)
   + [AWS](https://aws.amazon.com/)
+  + [SONAR-CLOUD] (https://sonarcloud.io/)
 
 ## Membres:
 
