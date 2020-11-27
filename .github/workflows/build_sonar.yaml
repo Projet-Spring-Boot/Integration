@@ -13,7 +13,6 @@ jobs:
       uses: actions/checkout@v2
     
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
       run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=baralga -Dsonar.organization=baralga -Dsonar.host.url=https://sonarcloud.io/ -Dsonar.login=$SONAR_TOKEN
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
