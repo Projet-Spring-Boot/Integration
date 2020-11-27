@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: Creation de la Docker Image
 
 on:
   push:
@@ -30,4 +30,3 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: louisonsarlinmagnus/integration
-          
