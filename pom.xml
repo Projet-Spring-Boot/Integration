@@ -136,7 +136,7 @@
 		</plugins>
 	</build>
 
-	<profile>
+<!-- 	<profile>
 		<id>sonar</id>
 		<properties>
 			<sonar.host.url>https://sonarcloud.io/</sonar.host.url>
@@ -165,6 +165,6 @@
 			</plugins>
 		</build>
 	</profile>
-	
+	 -->
 		
 </project>
