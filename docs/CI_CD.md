@@ -1,5 +1,12 @@
 # Mise en place de la CI CD
 
+## Resources
+Voici les fichiers en question:
+
+- [build.yaml](/res/build.yaml)
+- [Dockerfile](/res/Dockerfile)
+- [sonar-project.properties](/res/sonar-project.properties)
+
 ## Description
 
 ### Introduction
@@ -27,7 +34,6 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n","-jar","/app.jar"]
 ```
 
-
 ### Github Action
 
 Les Github Actions vont nous permettre d'automatiser l'intégration de notre code.
@@ -40,7 +46,7 @@ name: Continuous Integration
 
 on:
   push:
-    branches: [ deploy ]
+    branches: [ master ] # Lorsque l'on push sur la branch master
 
 jobs:
   deploy:
@@ -48,34 +54,77 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout master branch
+      - name: Checkout master branch # On se place sur la branch master
         uses: actions/checkout@v2
 
-      - name: Setup JDK 1.8
+      - name: Setup JDK 1.8 # On paramètre notre JDK
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
-      - name: Maven Clean & Package
+      - name: Maven Clean & Package # On nettoie puis on recrée notre .jar
         run: mvn -B clean package --file pom.xml
 
-      - name: Docker Build & Push
+      - name: Docker Build & Push # On crée et upload notre image Docker
         uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: <your_docker_id>/<your_micro_service>
+          repository: louisonsarlinmagnus/<your_micro_service>
           tag_with_ref: true
           tag_with_sha: true
+
 ```
 
-Le step "Setup JDK 1.8" permet de configurer notre environnement JAVA.
+:warning: **Il est très important de créer les secrets dans github** :warning:
 
-Le step "Maven Clean & Package" permet de recréer les dépendances et produit un fichier `.jar`.
+### Sonar Cloud
 
-Le step "Docker Build & Push" permet de créer et de télécharger l'image Docker sur notre repository Docker.
+Sonar Cloud permet d'analyser le code pour détecter des bugs et vulnérabilités.
+Pour configurer SonarCLoud il faut créer un fichier `sonar-project.properties`.
 
-:warning: Il est très important de créer les secrets dans github :warning:
+Construction de `sonar-project.properties`:
+```
+sonar.organization=<replace with your SonarCloud organization key>
+sonar.projectKey=<replace with the key generated when setting up the project on SonarCloud>
+source.
+```
+
+Il faut aussi modifier notre github action en ajoutant le code suivant a la fin.
+
+```yaml
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+```
+:warning: **il faudra créer les tokens `GITHUB_TOKEN` et `SONAR_TOKEN`** :warning:
+
+Cet outil n'est pas bloquant même en cas de détection de vulnérabilité le depoyement se poursuivra. Il est donc **impératif** d'aller regarder sur la page sonarcloud les vulnérabilité détectées et de les corriger dans la version suivante.
+
 
 ## CD: Déploient Continue
+
+### Configuration AWS
+
+Sur AWS: My Classrooms > Cloud Computing > Continue > Account details > Show.
+Copier les information dans `%HOME%/.aws/credentials`
+Puis ouvrir/créer `%HOME%/.aws/config` et coller:
+```
+[default]
+region = us-east-1
+output = yaml
+```
+
+Pour vérifier que vous avez bien accès au compte depuis le client: `aws ec2 describe-instances`.
+
 
