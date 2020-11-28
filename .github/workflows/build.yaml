@@ -22,9 +22,6 @@ jobs:
       - name: Maven Clean & Package
         run: mvn -B clean package --file pom.xml
 
-      - name: Il est ou le .jar
-        run: ls target/
-
       - name: Docker Build & Push
         uses: docker/build-push-action@v2.2.0
         with:
