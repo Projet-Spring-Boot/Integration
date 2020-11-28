@@ -4,9 +4,13 @@
 
 ## Documentation et ressources disponible
 
+### Documentation
+
 - **[Contraintes](/docs/mandatory.md)**
 - [Réponse à l'emission du besoin](/docs/reponse_besoin.md)
 - [Mise en place de la CI-CD](/docs/CI_CD.md)
+
+### Ressources
 
 - [Dockerfile](/res/Dockerfile)
 - [build.yaml](/res/build.yaml)
@@ -35,11 +39,11 @@
 - [ ] Définir comment le micro-services communiquent entre eux
 - [x] Ajouter Facebook à l'application
 - [x] Faire Documentation Facebook
-- [ ] Créer une classe générique de "post"
 - [x] SonarCloud
-- [ ] Création et push des Docker Image
+- [x] Création et push des Docker Image
 - [ ] AWS
-- [ ] Doc CI-CD
+- [x] Doc CI
+- [ ] Doc CD
 
 ## Outils nécessaire
 
