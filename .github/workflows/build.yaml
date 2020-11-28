@@ -28,6 +28,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: louisonsarlinmagnus/integration
+          push: true
 
   sonarcloud:
     name: Analyse SonarCloud
