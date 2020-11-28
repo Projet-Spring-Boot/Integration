@@ -70,6 +70,16 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2`
 
+<<<<<<< HEAD
+=======
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2`
+
+>>>>>>> dcf6f2bbcd4b3dadd616e0b846df0ddb6246b974
       - name: Maven Clean & Package
         run: mvn -B clean package --file pom.xml
 
