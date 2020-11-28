@@ -195,4 +195,94 @@ Pour vérifier que vous avez bien accès à l'instance crée: `aws ec2 describe-
 
 ### ECS LAB
 
-A présent on va déployer notre fichier de configuration pour créer notre cluster: `ecs-cluster.yaml`. Disponible [ici](/src/infra/ecs-cluster.yaml)
+A présent on va déployer notre fichier de configuration pour créer notre cluster: `ecs-cluster.yaml`. Disponible [ici](/src/infra/ecs-cluster.yaml):
+`aws cloudformation deploy --template-file ecs-cluster.yaml --stack-name monCluster-stack --parameter-overrides --capabilities CAPABILITY_NAMED_IAM `.
+
+Puis on créer notre tâche pour ECS: `ecs-task.yaml`
+
+A présent on va déployer notre image Docker dans ECS: `aws cloudformation deploy --template-file ecs-task.yaml --stack-name ecs-task --parameter-overrides ImageUrl=docker.io/<your-docker-id>/yncrea-hellomicro:sha-$(git rev-parse --short HEAD) --no-fail-on-empty-changeset`
+
+### EKS
+
+chocolatey install eksctl
+
+`eksctl create cluster -f src/infra/eks-cluster.yaml` -> Expired Token...
+En changeant les token ça marche
+YES ON EST CONTENT
+
+On récupère des infos : `kubectl get svc`
+
+`kubectl create serviceaccount tiller --namespace kube-system`
+
+On créer:
+
+`service-account.yaml`
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+```
+
+`rbac-config.yaml`
+```yaml
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: tiller-role-binding
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+```
+
+`kubectl apply -f src/infra/service-account.yaml`
+
+`kubectl apply -f src/infra/rbac-config.yaml`
+
+`helm init --service-account tiller` # Ca marche pas
+
+On recréer notre arborescence helm
+
+`helm repo add stable https://kubernetes-charts.storage.googleapis.com/`
+`helm repo update`
+
+On resneigne nos id Docker
+
+`helm install magicunicorn src/helm/chart/micro` pour creer le package
+`helm update magicunicorn src/helm/char/micro` pour le mettre a jour
+
+`helm status magicunicorn` YES CA MARCHE
+
+**On a pas encore fait de deployment**
+
+`kubectl apply -f src/kubernetes/deployment.yaml`: On déploi le deployment
+
+`kubectl get deployments`: on verif 
+
+`kubectl apply -f src/kubernetes/service.yaml`: on déploi le service
+
+`kubectl get svc`: on verifi qu'on a notre service
+
+`kubectl create secret generic yncrea-hellomicro-secret --from-literal=secret.txt="Secret"`: On créer un secret
+
+`kubectl get secrets`: voir les secrets qui existent
+
+
+
+
+
+
+
+
+
+
+
+
+
+A partir de la on peut définir les métodes de communication
