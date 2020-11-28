@@ -62,17 +62,30 @@ jobs:
         with:
           java-version: 1.8
 
-      - name: Maven Clean & Package # On nettoie puis on recrée notre .jar
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2`
+
+      - name: Maven Clean & Package
         run: mvn -B clean package --file pom.xml
 
-      - name: Docker Build & Push # On crée et upload notre image Docker
-        uses: docker/build-push-action@v1
+      - name: Login
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: louisonsarlinmagnus/<your_micro_service>
-          tag_with_ref: true
-          tag_with_sha: true
+
+      - name: Build
+        uses: docker/build-push-action@v2.2.0
+        with:
+          tags: louisonsarlinmagnus/integration:latest
+          load: true
+
+      - name: Push
+        run: docker push louisonsarlinmagnus/integration:latest
 
 ```
 
