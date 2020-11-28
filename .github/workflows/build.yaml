@@ -36,6 +36,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: louisonsarlinmagnus/integration
           push: true
+          tags: ${{ env.REGISTRY }}/louisonsarlinmagnus/integration:latest
 
   sonarcloud:
     name: Analyse SonarCloud
