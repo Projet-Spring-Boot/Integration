@@ -35,7 +35,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: louisonsarlinmagnus/integration
-          push: true
           tags: louisonsarlinmagnus/integration:latest
           
       - name: Docker Push
