@@ -42,6 +42,7 @@
 - [x] SonarCloud
 - [x] Création et push des Docker Image
 - [ ] AWS
+- [x] AWS Manuel 
 - [x] Doc CI
 - [ ] Doc CD
 
