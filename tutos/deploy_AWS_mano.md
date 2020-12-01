@@ -90,6 +90,10 @@ sudo apt install docker-compose
 sudo apt install maven
 ```
 
+```bash
+sudo apt install mysql-server
+```
+
 ### Copier notre projet sur l'Instance
 
 Télécharger File Zilla : https://filezilla-project.org/
@@ -152,3 +156,83 @@ Dans xml :
     </plugins>
 </build>
 ```
+
+### Deployer plusieurs images Docker 
+
+Il faut crée un nouveau ficheir *docker-compose.yml* à la racine du projet.
+
+Exemple : 
+
+```yaml
+version: '3'
+
+services:
+  docker-mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=motdepasse
+      - MYSQL_DATABASE=mysql
+    ports:
+      - 3307:3306
+
+  app:
+    image: imageadmin
+    ports:
+       - 8080:8080
+    depends_on:
+       - docker-mysql
+```
+
+Ici notre réseau sera composé de *monimage* en local et mysql directement sur le repo Docker mysql.
+*Pour Redis remplacer mysql par redis et le port est 6379 et supprimer les variables d'environement*
+
+Modifier le fichier srv/main/ressources/application.properties
+
+```yaml
+...
+
+# ===============================
+# DATABASE
+# ===============================
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://docker-mysql:3306/mysql
+spring.datasource.username=root
+spring.datasource.password=playstation117
+
+# ===============================
+# JPA / HIBERNATE
+# ===============================
+
+...
+```
+
+**Ligne à modifier** : *spring.datasource.url=jdbc:mysql://[NOM DOCKER SQL]:[PORT BDD SQL]/[NOM BDD SQL]*
+
+Lancer un réseau de Docker :
+
+```bash
+sudo docker-compose up
+```
+
+Stoper le réseau de Docker :
+
+```bash
+sudo docker-compose down
+```
+
+*BONUS*
+
+Pour commenter les host name sur ficheir mysql 
+
+```bash
+sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
+```
+
+Arreter mysql (libérer le port 3306)
+
+```bash
+sudo systemctl stop mysql
+```
+
+**C'était le CIJDD**
