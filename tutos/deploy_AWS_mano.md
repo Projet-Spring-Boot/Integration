@@ -208,7 +208,7 @@ Modifier le fichier src/main/ressources/application.properties
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://docker-mysql:3306/mysql
 spring.datasource.username=root
-spring.datasource.password=playstation117
+spring.datasource.password=motdepasse
 
 # ===============================
 # JPA / HIBERNATE
