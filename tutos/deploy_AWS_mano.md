@@ -98,7 +98,7 @@ sudo apt install mysql-server
 sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
 ```
 
-Arrêter mysql (libérer le port 3306)
+*Arrêter mysql (libérer le port 3306)*
 
 ```bash
 sudo systemctl stop mysql
@@ -125,6 +125,8 @@ Pour construire notre projet ne pas oublier les commandes :
 mvn clean
 mvn package
 ```
+
+**A chaque modification ne pas oublier de re-package le projet.**
 
 ### Construire l'Image Docker sur notre Instance 
 
@@ -180,7 +182,7 @@ services:
   docker-mysql:
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=motdepasse
+      - MYSQL_ROOT_PASSWORD=huKMHU5Ske45898t
       - MYSQL_DATABASE=mysql
     ports:
       - 3307:3306
@@ -208,7 +210,7 @@ Modifier le fichier src/main/ressources/application.properties
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.datasource.url=jdbc:mysql://docker-mysql:3306/mysql
 spring.datasource.username=root
-spring.datasource.password=motdepasse
+spring.datasource.password=huKMHU5Ske45898t
 
 # ===============================
 # JPA / HIBERNATE
