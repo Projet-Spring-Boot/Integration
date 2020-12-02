@@ -94,6 +94,16 @@ sudo apt install maven
 sudo apt install mysql-server
 ```
 
+```bash
+sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
+```
+
+Arrêter mysql (libérer le port 3306)
+
+```bash
+sudo systemctl stop mysql
+```
+
 ### Copier notre projet sur l'Instance
 
 Télécharger File Zilla : https://filezilla-project.org/
