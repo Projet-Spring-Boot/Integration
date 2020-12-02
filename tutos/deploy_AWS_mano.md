@@ -95,6 +95,10 @@ sudo apt install mysql-server
 ```
 
 ```bash
+sudo apt install redis
+```
+
+```bash
 sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
 ```
 
@@ -102,6 +106,12 @@ sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
 
 ```bash
 sudo systemctl stop mysql
+```
+
+*Arrêter redis (libérer le port 6379)*
+
+```bash
+sudo service redis-server stop
 ```
 
 ### Copier notre projet sur l'Instance
@@ -173,7 +183,7 @@ Dans xml :
 
 Il faut créer un nouveau fichier *docker-compose.yml* à la racine du projet.
 
-Exemple : 
+Exemple (APP + SQL + REDIS) : 
 
 ```yaml
 version: '3'
@@ -187,16 +197,22 @@ services:
     ports:
       - 3307:3306
 
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
   app:
     image: imageadmin
     ports:
-       - 8080:8080
+      - 8080:8080
     depends_on:
-       - docker-mysql
+      - docker-mysql
+      - redis
+
 ```
 
-Ici notre réseau sera composé de *monimage* en local et mysql directement sur le repo Docker mysql.
-*Pour Redis remplacer mysql par redis et le port est 6379 et supprimer les variables d'environnement*
+Ici notre réseau sera composé de *monimage* en local, mysql directement sur le repo Docker mysql et Redis directement sur le repo Docker Redis.
 
 Modifier le fichier src/main/ressources/application.properties
 
@@ -221,6 +237,20 @@ spring.datasource.password=huKMHU5Ske45898t
 
 **Ligne à modifier** : *spring.datasource.url=jdbc:mysql://[NOM DOCKER SQL]:[PORT BDD SQL]/[NOM BDD SQL]*
 
+Pour Redis modificer le fichier : src/main/java/com/spring/social/configuration/RedisConfig.java
+
+```java
+@Bean
+    public JedisConnectionFactory connectionFactory()
+    {
+        RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
+        configuration.setHostName("<DOCKER NAME>");
+        configuration.setPort(6379);
+        return new JedisConnectionFactory(configuration);
+    }
+```
+
+
 Lancer un réseau de Docker :
 
 ```bash
@@ -233,18 +263,6 @@ Stopper le réseau de Docker :
 sudo docker-compose down
 ```
 
-*NOTES*
-
-Pour commenter les host name sur fichier mysql 
-
-```bash
-sudo sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
-```
-
-Arrêter mysql (libérer le port 3306)
-
-```bash
-sudo systemctl stop mysql
-```
-
 **C'était le CIJDD**
+
+*Fin du Tuto*
