@@ -140,6 +140,16 @@ mvn package
 
 ### Construire l'Image Docker sur notre Instance 
 
+DockerFile :
+
+```xml
+FROM java:8
+EXPOSE 8080
+WORKDIR /target
+COPY *.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
 Dans l'instance aller dans le dossier du projet puis entrer la commande suivante :
 
 ```bash
