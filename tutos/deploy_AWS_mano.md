@@ -145,8 +145,8 @@ DockerFile :
 ```xml
 FROM java:8
 EXPOSE 8080
-WORKDIR /target
-COPY *.jar app.jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 ```
 
